@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  SwipeProject
+
+  Created by ramonqlee on 5/20/13.
+  Copyright (c) 2013 ramonqlee. All rights reserved.
+*/
+"Title"="星座物语2";
+"About"="版本V1.0.0  iDreems.com荣誉出品";
+
+"share2WixinChat"="分享好友";
+"share2WixinFriends"="分享微信朋友圈";
+"add2FavTip"="收藏";
+"Back" = "返回";
+"AboutTitle"="关于";
+"Done" = "返回";
+"EmailAlertViewTitle" = "电子邮件";
+"EmailAlertViewMsg" = "已成功送达收件人!";
+
+"kEmailFeedbackBody"= "我喜欢的功能是：\n\n不喜欢的功能是:\n\n希望增加的功能是:\n\n其他建议：\n";

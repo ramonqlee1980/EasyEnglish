@@ -1,0 +1,47 @@
+//
+// Prefix header for all source files of the 'SwipeProject' target in the 'SwipeProject' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+//global
+#define kDeviceWidth  [[UIScreen mainScreen]applicationFrame].size.width
+#define kDeviceHeight [[UIScreen mainScreen]applicationFrame].size.height
+
+#define kSideBarMargin  50
+
+
+#define kDefaultTitle @"随便逛逛"
+#define kTitleFontSize 18
+#define kNavigationBarHeight 44
+#define kMarginToBoundaryX 8
+#define kDefaultButtonSize 32
+#define kMarginToTopBoundary (kNavigationBarHeight-kDefaultButtonSize)/2
+#define kMiddleSpace kDeviceWidth-2*kDefaultButtonSize-2*kMarginToBoundaryX
+#define kTabBarHeight 49
+#define kNavigationBarHeight 44
+
+
+#define kNavigationBarBackground @"head_background.png"
+#define kMainBackgound @"main_background.png"
+#define kLeftSideBarButtonBackground @"icon_pic_enable.png"
+#define kRightSideBarButtonBackground @"icon_new_enable.png"
+#define kIconSetting @"settings-icon.png"
+
+//const for aster
+#define kAsterName @"kAsterName"
+
+#define kTitle @"Title"
+#define kUrl @"Url"
+#define kIcon @"Icon"
+#define kTimeSpan @"TimeSpan"
+#define kOrder @"order"

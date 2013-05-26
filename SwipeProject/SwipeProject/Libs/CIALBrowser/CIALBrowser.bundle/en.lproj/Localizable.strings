@@ -1,0 +1,19 @@
+/* Browser */
+"OK" = "确定";//"OK";
+"Cancel" = "取消";//"Cancel";
+"Close" = "关闭";//"Close";
+"Error" = "失败啦";//"Error";
+"Add bookmark" = "添加书签";//"Add bookmark";
+"Open with Safari" = "用浏览器打开";//"Open with Safari";
+"Mail Link to this Page" = "分享";//"Mail Link to this Page";
+"Print" = "打印";//"Print";
+"Add as Homepage" = "Add as Homepage";
+"Open" = "Open";
+"Copy" = "Copy";
+"Failed sending email, please try again..." = "Failed sending email, please try again...";
+
+/* Bookmarks */
+"Bookmarks" = "书签";//"Bookmarks";
+"Add Bookmark" = "添加书签";//"Add Bookmark";
+"Edit Bookmark" = "编辑书签";//"Edit Bookmark";
+
