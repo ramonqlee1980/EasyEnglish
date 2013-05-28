@@ -17,7 +17,7 @@
 #define kDeviceWidth  [[UIScreen mainScreen]applicationFrame].size.width
 #define kDeviceHeight [[UIScreen mainScreen]applicationFrame].size.height
 
-#define kSideBarMargin  50
+#define kSideBarMargin  150
 
 
 #define kDefaultTitle @"随便逛逛"

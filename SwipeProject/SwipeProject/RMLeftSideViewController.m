@@ -11,10 +11,9 @@
 #import "RMTabbedViewController.h"
 #import "SettingsViewController.h"
 
-//index for controller construction
-#define kPopularMakeupIndex 0
-#define kCityBeautyMakeup 1
 
+NSInteger kLeftChannelGroupCount = 3;
+NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
 
 @interface RMLeftSideViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -42,25 +41,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"LeftChannels" ofType:@"plist"];
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    
     
     if (!items) {
         items = [[NSMutableArray alloc]init];
     }
-    [items addObjectsFromArray:[data allValues]];
-
-    //sort
-    NSSortDescriptor * descriptor =[[[NSSortDescriptor alloc] initWithKey:kOrder ascending:YES comparator:^(id order1, id order2) {
-        NSString* v1 = (NSString*)order1;
-        NSString* v2 = (NSString*)order2;
-        
-        
-        return [v1 intValue]>=[v2 intValue];
-    }]autorelease];
-    [items sortUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-    NSLog(@"%@", items);//直接打印数据
+    //get group data
+    for (NSInteger i = 0; i<kLeftChannelGroupCount; ++i) {
+        NSArray* group = [self getGroup:[NSString stringWithFormat:kLeftChannelGroupFormatter,i+1] ofType:@"plist"];
+        if (group && [group count]>0) {
+            [items addObject:group];
+        }
+    }
     
     CGRect frame = self.view.frame;
     frame.origin.y = 0;
@@ -105,7 +96,7 @@
     rc.origin.x = 0;
     rc.size.height = rc.size.height-kNavigationBarHeight;
     rc.size.width = kDeviceWidth-kSideBarMargin;
-    UITableView* tableView = [[[UITableView alloc]initWithFrame:rc]autorelease];
+    UITableView* tableView = [[[UITableView alloc]initWithFrame:rc style:UITableViewStyleGrouped]autorelease];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
@@ -121,13 +112,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return items?([items count]):0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //load more
-    return items?[items count]:0;
+    if (items && [items count]>section) {
+        NSArray* arr = [items objectAtIndex:section];
+        return  arr?[arr count ]:0;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,7 +135,12 @@
     }
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
-    NSDictionary* dict = [items objectAtIndex:indexPath.row];
+    NSArray* currentItem = nil;
+    if (items && [items count]>indexPath.section) {
+        currentItem = [items objectAtIndex:indexPath.section];
+    }
+    
+    NSDictionary* dict = [currentItem objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellStyleValue1;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -160,7 +159,11 @@
 - (void)tableView:(UITableView *)tView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    NSDictionary* dict = [items objectAtIndex:indexPath.row];
+    NSArray* currentItem = nil;
+    if (items && [items count]>indexPath.section) {
+        currentItem = [items objectAtIndex:indexPath.section];
+    }
+    NSDictionary* dict = [currentItem objectAtIndex:indexPath.row];
     if (delegate && [delegate respondsToSelector:@selector(leftSideBarSelectWithController:)])
     {
         [delegate leftSideBarSelectWithController:[self subViewController:[dict objectForKey:kUrl] withTitle:[dict objectForKey:kTitle]]];
@@ -178,5 +181,31 @@
 {
     SettingsViewController* controller = [[[SettingsViewController alloc]init]autorelease];
     [self presentViewController:controller animated:YES completion:nil];
+}
+
+#pragma mark util methods
+-(NSArray*)getGroup:(NSString *)name ofType:(NSString *)ext
+{
+    NSMutableArray* dataArray = [[[NSMutableArray alloc]init]autorelease];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:name ofType:ext];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    if (!data) {
+        return dataArray;
+    }
+    
+    [dataArray addObjectsFromArray:[data allValues]];
+    
+    //sort
+    NSSortDescriptor * descriptor =[[[NSSortDescriptor alloc] initWithKey:kOrder ascending:YES comparator:^(id order1, id order2) {
+        NSString* v1 = (NSString*)order1;
+        NSString* v2 = (NSString*)order2;
+        
+        
+        return [v1 intValue]>=[v2 intValue];
+    }]autorelease];
+    [dataArray sortUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    NSLog(@"%@", dataArray);//直接打印数据
+    
+    return dataArray;
 }
 @end

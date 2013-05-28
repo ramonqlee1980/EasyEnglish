@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>我的收藏</key>
+	<dict>
+		<key>order</key>
+		<string>10</string>
+		<key>Icon</key>
+		<string>Scorpio</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/aster.php?type=tianxie</string>
+		<key>Title</key>
+		<string>我的收藏</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>推荐</key>
+	<dict>
+		<key>order</key>
+		<string>11</string>
+		<key>Icon</key>
+		<string>Sagittarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/aster.php?type=sheshou</string>
+		<key>Title</key>
+		<string>推荐</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

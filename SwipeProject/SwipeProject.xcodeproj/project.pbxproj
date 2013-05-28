@@ -16,6 +16,8 @@
 		3023466F173A2A1D001802DA /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3023466E173A2A1D001802DA /* GifView.m */; };
 		30234671173A2C93001802DA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30234670173A2C93001802DA /* ImageIO.framework */; };
 		30234673173A2D59001802DA /* head_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 30234672173A2D59001802DA /* head_background.png */; };
+		30340E311755586D00262ADE /* LeftChannelGroup2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30340E301755586D00262ADE /* LeftChannelGroup2.plist */; };
+		30340E3317555EA900262ADE /* LeftChannelGroup3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30340E3217555EA900262ADE /* LeftChannelGroup3.plist */; };
 		3047DA8B174AE4560076A770 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3047DA8A174AE4560076A770 /* Icon-57.png */; };
 		3047DA8D174AE45D0076A770 /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3047DA8C174AE45D0076A770 /* Icon-114.png */; };
 		305D53BD17347DA7003F7913 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D53BC17347DA7003F7913 /* UIKit.framework */; };
@@ -112,7 +114,7 @@
 		30F430A417498108002850E6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F430A317498108002850E6 /* SettingsViewController.m */; };
 		30F430A717498821002850E6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30F430A917498821002850E6 /* Localizable.strings */; };
 		30F430AF17499146002850E6 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30F430AE17499146002850E6 /* settings-icon.png */; };
-		30F9F0F617446AA9008835E3 /* LeftChannels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30F9F0F517446AA9008835E3 /* LeftChannels.plist */; };
+		30F9F0F617446AA9008835E3 /* LeftChannelGroup1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30F9F0F517446AA9008835E3 /* LeftChannelGroup1.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +136,8 @@
 		3023466E173A2A1D001802DA /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
 		30234670173A2C93001802DA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		30234672173A2D59001802DA /* head_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_background.png; sourceTree = "<group>"; };
+		30340E301755586D00262ADE /* LeftChannelGroup2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftChannelGroup2.plist; sourceTree = "<group>"; };
+		30340E3217555EA900262ADE /* LeftChannelGroup3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftChannelGroup3.plist; sourceTree = "<group>"; };
 		3047DA8A174AE4560076A770 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-57.png"; path = "../../Icon-57.png"; sourceTree = "<group>"; };
 		3047DA8C174AE45D0076A770 /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-114.png"; path = "../../Icon-114.png"; sourceTree = "<group>"; };
 		305D53B917347DA7003F7913 /* SwipeProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,7 +299,7 @@
 		30F430A317498108002850E6 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		30F430A817498821002850E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		30F430AE17499146002850E6 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
-		30F9F0F517446AA9008835E3 /* LeftChannels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftChannels.plist; sourceTree = "<group>"; };
+		30F9F0F517446AA9008835E3 /* LeftChannelGroup1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftChannelGroup1.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,7 +416,9 @@
 				305D53C817347DA7003F7913 /* main.m */,
 				305D53CA17347DA7003F7913 /* SwipeProject-Prefix.pch */,
 				305D53D217347DA8003F7913 /* Default-568h@2x.png */,
-				30F9F0F517446AA9008835E3 /* LeftChannels.plist */,
+				30F9F0F517446AA9008835E3 /* LeftChannelGroup1.plist */,
+				30340E3217555EA900262ADE /* LeftChannelGroup3.plist */,
+				30340E301755586D00262ADE /* LeftChannelGroup2.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -760,7 +766,7 @@
 				30234666173A29EC001802DA /* LICENSE in Resources */,
 				30234667173A29EC001802DA /* README.md in Resources */,
 				30234673173A2D59001802DA /* head_background.png in Resources */,
-				30F9F0F617446AA9008835E3 /* LeftChannels.plist in Resources */,
+				30F9F0F617446AA9008835E3 /* LeftChannelGroup1.plist in Resources */,
 				30F4308B1748FE1E002850E6 /* Aquarius.gif in Resources */,
 				30F430971748FF3C002850E6 /* Aries.gif in Resources */,
 				30F430981748FF3C002850E6 /* Cancer.gif in Resources */,
@@ -777,6 +783,8 @@
 				30F430AF17499146002850E6 /* settings-icon.png in Resources */,
 				3047DA8B174AE4560076A770 /* Icon-57.png in Resources */,
 				3047DA8D174AE45D0076A770 /* Icon-114.png in Resources */,
+				30340E311755586D00262ADE /* LeftChannelGroup2.plist in Resources */,
+				30340E3317555EA900262ADE /* LeftChannelGroup3.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
