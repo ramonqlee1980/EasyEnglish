@@ -10,7 +10,7 @@
 #import "SideBarViewController.h"
 #import "RMTabbedViewController.h"
 #import "SettingsViewController.h"
-
+#import "Flurry.h"
 
 NSInteger kLeftChannelGroupCount = 3;
 NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
@@ -166,7 +166,9 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
     NSDictionary* dict = [currentItem objectAtIndex:indexPath.row];
     if (delegate && [delegate respondsToSelector:@selector(leftSideBarSelectWithController:)])
     {
-        [delegate leftSideBarSelectWithController:[self subViewController:[dict objectForKey:kUrl] withTitle:[dict objectForKey:kTitle]]];
+        NSString* title = [dict objectForKey:kTitle];
+        [Flurry logEvent:title];
+        [delegate leftSideBarSelectWithController:[self subViewController:[dict objectForKey:kUrl] withTitle:title]];
     }
     
     [tView deselectRowAtIndexPath:indexPath animated:YES];

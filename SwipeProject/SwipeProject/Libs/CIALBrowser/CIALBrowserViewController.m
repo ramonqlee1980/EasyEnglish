@@ -656,13 +656,21 @@ static NSString *const iRateiOSAppStoreURLFormat = @"itms-apps://ax.itunes.apple
     } else if (sendUrlButtonIndex == buttonIndex) {
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         [mailViewController setSubject:[webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
-        /*
-        NSString* url = [NSString stringWithFormat:iRateiOSAppStoreURLFormat, (unsigned int)[config appleId]];
-        NSMutableString* body = [NSMutableString stringWithFormat:@"<a href=\"%@\">%@</a>",url,NSLocalizedString(@"Title", @"")];
+        
+#if 1
+        NSString* url = [NSString stringWithFormat:iRateiOSAppStoreURLFormat, kAppleId];
+        NSString* tip = NSLocalizedString(@"Title", @"");
+        tip = [NSString stringWithFormat:kShareFormatter,tip];
+        NSMutableString* body = [NSMutableString stringWithFormat:@"<a href=\"%@\" style=\"color: rgb(255,0,0)\">%@</a>",url,tip];
         [body appendString:[webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]];
-        */
+        NSString* kToBeReplacedString = @"下载ZAKER获取更多精彩资讯";
+        [body replaceOccurrencesOfString:kToBeReplacedString withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0,body.length)];
+        [mailViewController setMessageBody:body
+                                    isHTML:YES];
+#else
         [mailViewController setMessageBody:[webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]
                                     isHTML:YES];
+#endif
         
         mailViewController.mailComposeDelegate = self;
         

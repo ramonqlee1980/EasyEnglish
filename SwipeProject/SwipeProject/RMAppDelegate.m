@@ -11,7 +11,7 @@
 #import "RMLeftSideViewController.h"
 #import "RMRightSideViewController.h"
 #import "RMTabbedViewController.h"
-
+#import "Flurry.h"
 
 @implementation RMAppDelegate
 
@@ -65,6 +65,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    [Flurry startSession:kFlurryAppKey];
     
     [self setDefaultSettingsIfNotSet];
     

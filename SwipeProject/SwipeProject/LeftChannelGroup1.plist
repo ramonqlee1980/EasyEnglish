@@ -35,7 +35,7 @@
 		<key>Icon</key>
 		<string>Aries</string>
 		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=baiyang</string>
+		<string>http://www.idreems.com/openapi/aster.php?type=TIME</string>
 		<key>Title</key>
 		<string>每日新闻</string>
 		<key>TimeSpan</key>

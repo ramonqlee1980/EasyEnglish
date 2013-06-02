@@ -20,7 +20,7 @@
 #define kDefaultResouceUrl @"http://www.idreems.com/openapi/collect_api.php?type=image"
 
 #define kInitItemCount 20
-#define kIncrementItemCount 10
+#define kIncrementItemCount 20
 #define kLoadMoreFakeDelay 0.5f
 #define kDefaultFilePath @"cache"
 

@@ -45,3 +45,8 @@
 #define kIcon @"Icon"
 #define kTimeSpan @"TimeSpan"
 #define kOrder @"order"
+
+
+#define kFlurryAppKey @"S2K8GJ5FWB952MXMPPC8"
+#define kAppleId 651216679 //FIXME需要替换
+#define kShareFormatter @"下 %@ 伴随你成长的英语学习应用！"
