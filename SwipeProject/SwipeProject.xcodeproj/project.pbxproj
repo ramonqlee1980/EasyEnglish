@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		300CF2FF175B3D9A007913DA /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 300CF2FE175B3D9A007913DA /* libFlurry.a */; };
+		300CF303175C02CE007913DA /* RMDailySentenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300CF301175C02CE007913DA /* RMDailySentenceViewController.m */; };
+		300CF304175C02CE007913DA /* RMDailySentenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 300CF302175C02CE007913DA /* RMDailySentenceViewController.xib */; };
 		30234666173A29EC001802DA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 30234658173A29EC001802DA /* LICENSE */; };
 		30234667173A29EC001802DA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 30234659173A29EC001802DA /* README.md */; };
 		30234668173A29EC001802DA /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3023465B173A29EC001802DA /* SDImageCache.m */; };
@@ -17,6 +19,7 @@
 		3023466F173A2A1D001802DA /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3023466E173A2A1D001802DA /* GifView.m */; };
 		30234671173A2C93001802DA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30234670173A2C93001802DA /* ImageIO.framework */; };
 		30234673173A2D59001802DA /* head_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 30234672173A2D59001802DA /* head_background.png */; };
+		302E1A03176149A900DAF5BE /* RMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302E1A02176149A900DAF5BE /* RMNavigationController.m */; };
 		30340E311755586D00262ADE /* LeftChannelGroup2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30340E301755586D00262ADE /* LeftChannelGroup2.plist */; };
 		30340E3317555EA900262ADE /* LeftChannelGroup3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30340E3217555EA900262ADE /* LeftChannelGroup3.plist */; };
 		3047DA8B174AE4560076A770 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3047DA8A174AE4560076A770 /* Icon-57.png */; };
@@ -121,6 +124,9 @@
 /* Begin PBXFileReference section */
 		300CF2FD175B3D9A007913DA /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		300CF2FE175B3D9A007913DA /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		300CF300175C02CE007913DA /* RMDailySentenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDailySentenceViewController.h; sourceTree = "<group>"; };
+		300CF301175C02CE007913DA /* RMDailySentenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDailySentenceViewController.m; sourceTree = "<group>"; };
+		300CF302175C02CE007913DA /* RMDailySentenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMDailySentenceViewController.xib; sourceTree = "<group>"; };
 		30234658173A29EC001802DA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		30234659173A29EC001802DA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3023465A173A29EC001802DA /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
@@ -139,6 +145,8 @@
 		3023466E173A2A1D001802DA /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
 		30234670173A2C93001802DA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		30234672173A2D59001802DA /* head_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_background.png; sourceTree = "<group>"; };
+		302E1A01176149A900DAF5BE /* RMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMNavigationController.h; sourceTree = "<group>"; };
+		302E1A02176149A900DAF5BE /* RMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMNavigationController.m; sourceTree = "<group>"; };
 		30340E301755586D00262ADE /* LeftChannelGroup2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftChannelGroup2.plist; sourceTree = "<group>"; };
 		30340E3217555EA900262ADE /* LeftChannelGroup3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftChannelGroup3.plist; sourceTree = "<group>"; };
 		3047DA8A174AE4560076A770 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-57.png"; path = "../../Icon-57.png"; sourceTree = "<group>"; };
@@ -663,6 +671,11 @@
 				30DFC97117353DAD0071D4DE /* RMRightSideViewController.m */,
 				30E1A97F1739EFBF0027F2DD /* RMTabbedViewController.h */,
 				30E1A9801739EFBF0027F2DD /* RMTabbedViewController.m */,
+				300CF300175C02CE007913DA /* RMDailySentenceViewController.h */,
+				300CF301175C02CE007913DA /* RMDailySentenceViewController.m */,
+				300CF302175C02CE007913DA /* RMDailySentenceViewController.xib */,
+				302E1A01176149A900DAF5BE /* RMNavigationController.h */,
+				302E1A02176149A900DAF5BE /* RMNavigationController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -800,6 +813,7 @@
 				3047DA8D174AE45D0076A770 /* Icon-114.png in Resources */,
 				30340E311755586D00262ADE /* LeftChannelGroup2.plist in Resources */,
 				30340E3317555EA900262ADE /* LeftChannelGroup3.plist in Resources */,
+				300CF304175C02CE007913DA /* RMDailySentenceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -871,6 +885,8 @@
 				3023466F173A2A1D001802DA /* GifView.m in Sources */,
 				30AA9175173E3CD3006B6B49 /* SwipeView.m in Sources */,
 				30F430A417498108002850E6 /* SettingsViewController.m in Sources */,
+				300CF303175C02CE007913DA /* RMDailySentenceViewController.m in Sources */,
+				302E1A03176149A900DAF5BE /* RMNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

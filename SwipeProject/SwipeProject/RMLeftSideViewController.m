@@ -11,6 +11,9 @@
 #import "RMTabbedViewController.h"
 #import "SettingsViewController.h"
 #import "Flurry.h"
+#import "RMNavigationController.h"
+#import "RMDailySentenceViewController.h"
+#import "RMAppDelegate.h"
 
 NSInteger kLeftChannelGroupCount = 3;
 NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
@@ -18,14 +21,18 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
 @interface RMLeftSideViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* items;
+    UIButton* showLeftSideBarButton;
 }
+@property(nonatomic,retain)UIButton* showLeftSideBarButton;
 @end
 
 @implementation RMLeftSideViewController
 @synthesize delegate;
+@synthesize showLeftSideBarButton;
 
 -(void)dealloc
 {
+    self.showLeftSideBarButton = nil;
     [items release];
     [super dealloc];
 }
@@ -176,9 +183,36 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
 #pragma mark viewcontrollers
 -(UIViewController*)subViewController:(NSString*)url withTitle:(NSString*)title
 {
-    //kPopularMakeupIndex
-    return [[[RMTabbedViewController alloc]init:url withTitle:title]autorelease];
+    RMNavigationController* controller = nil;
+    if (YES) {     
+        UIViewController* innerController = [[[RMDailySentenceViewController alloc]initWithNibName:@"RMDailySentenceViewController" bundle:nil]autorelease];
+        controller = [[[RMNavigationController alloc]initWithRootViewController:innerController]autorelease];
+        [controller setLeftBarButton:[self getLeftButton]];
+    }
+//    if (!controller) {
+//        controller = [[[RMTabbedViewController alloc]init:url withTitle:title]autorelease];;
+//    }
+    return controller;
 }
+-(UIButton*)getLeftButton
+{
+    //left 的按钮
+    if (showLeftSideBarButton) {
+        return showLeftSideBarButton;
+    }
+    self.showLeftSideBarButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [showLeftSideBarButton setBackgroundImage:[UIImage imageNamed:kLeftSideBarButtonBackground] forState:UIControlStateNormal];
+    [showLeftSideBarButton addTarget:self action:@selector(showLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
+    [showLeftSideBarButton setHidden:NO];
+
+    return showLeftSideBarButton;
+}
+-(void)showLeftSidebar:(UIView*)sender
+{
+    RMAppDelegate* appDelegate = (RMAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate showSideBarControllerWithDirection:SideBarShowDirectionLeft];
+}
+
 -(void)settingClick:(UIView*)sender
 {
     SettingsViewController* controller = [[[SettingsViewController alloc]init]autorelease];
