@@ -19,21 +19,8 @@
 //url is pulled from server and others are derived from this url
 #define kDefaultResouceUrl @"http://www.idreems.com/openapi/collect_api.php?type=image"
 
-#define kInitItemCount 20
-#define kIncrementItemCount 20
-#define kLoadMoreFakeDelay 0.5f
-#define kDefaultFilePath @"cache"
-
-#define kRefreshFileName(url) [NSString stringWithFormat:@"%@%@",@"Refresh_",[CommonHelper cachePathForKey:url] ]
-
-#define kLoadMoreFileNamePrefix @"More_"
-
-#define kTimelineJsonRefreshChanged(url)  [NSString stringWithFormat:@"%@%@",@"kRefreshNotification_",[CommonHelper cachePathForKey:url] ]
-
-#define kTimelineJsonLoadMoreChanged(url)  [NSString stringWithFormat:@"%@%@",@"kLoadMoreNotification_",[CommonHelper cachePathForKey:url] ]//reserved,right now load more local data
-
 #define kItemPerPage 20
-#define kData @"data"
+
 
 //#define kMainBackgound @"main_background.png"
 

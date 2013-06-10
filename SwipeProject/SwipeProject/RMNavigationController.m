@@ -80,7 +80,6 @@
     [headView setFrame:CGRectMake(0, 0, kDeviceWidth, kNavigationBarHeight)];
     [self.view addSubview:headView];
     [headView release];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,5 +104,28 @@
     
     return self;
 }
-
+-(void)setTitle:(NSString *)title
+{
+#define kTitleViewTag 10
+    //reset duplicate one
+    NSArray* subViews = [self.view subviews];
+    for (UIView* titleSubview in subViews)
+    {
+        if (titleSubview && [titleSubview isKindOfClass:[UIButton class]] && titleSubview.tag==kTitleViewTag ) {
+            [((UIButton*)titleSubview) setTitle:title forState:UIControlStateNormal];
+            NSLog(@"reset title and return");
+            return;
+        }
+    }
+    
+    UIButton*titleView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [titleView setFrame:CGRectMake(kMarginToBoundaryX+kDefaultButtonSize,kMarginToTopBoundary,kMiddleSpace,kDefaultButtonSize)];
+    [titleView setTitle:title?title:kDefaultTitle forState:UIControlStateNormal];
+    [titleView.titleLabel setFont:[UIFont boldSystemFontOfSize:kTitleFontSize]];
+    titleView.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [titleView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [titleView setHidden:NO];
+    [titleView setTag:kTitleViewTag];
+    [self.view addSubview:titleView];
+}
 @end

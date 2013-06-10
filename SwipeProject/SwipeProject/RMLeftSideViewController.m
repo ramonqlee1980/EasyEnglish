@@ -187,6 +187,7 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
     if (YES) {     
         UIViewController* innerController = [[[RMDailySentenceViewController alloc]initWithNibName:@"RMDailySentenceViewController" bundle:nil]autorelease];
         controller = [[[RMNavigationController alloc]initWithRootViewController:innerController]autorelease];
+        controller.title = title;
         [controller setLeftBarButton:[self getLeftButton]];
     }
 //    if (!controller) {

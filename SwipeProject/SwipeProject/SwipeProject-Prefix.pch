@@ -53,3 +53,17 @@
 
 //localized strings keys
 #define kBack @"Back"
+
+#define kData @"data"
+#define kInitItemCount 20
+#define kIncrementItemCount 20
+#define kLoadMoreFakeDelay 0.5f
+#define kDefaultFilePath @"cache"
+
+#define kRefreshFileName(url) [NSString stringWithFormat:@"%@%@",@"Refresh_",[CommonHelper cachePathForKey:url] ]
+
+#define kLoadMoreFileNamePrefix @"More_"
+
+#define kTimelineJsonRefreshChanged(url)  [NSString stringWithFormat:@"%@%@",@"kRefreshNotification_",[CommonHelper cachePathForKey:url] ]
+
+#define kTimelineJsonLoadMoreChanged(url)  [NSString stringWithFormat:@"%@%@",@"kLoadMoreNotification_",[CommonHelper cachePathForKey:url] ]//reserved,right now load more local data
