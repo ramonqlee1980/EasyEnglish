@@ -12,14 +12,17 @@
 #import "CommonHelper.h"
 #import "HTTPHelper.h"
 #import "RMDailySentenceJson.h"
+#import "AudioPlayer.h"
+#import "AudioCell.h"
 
 //TODO::url TBC
-#define kDefaultResourceUrl @""
+#define kDefaultResourceUrl @"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3"
 
 @interface RMDailySentenceViewController ()
 {
     FileModel* fileModel;
     NSString* resourceUrl;
+    AudioPlayer *_audioPlayer;
 }
 @property(nonatomic,assign)FileModel* fileModel;
 @property(nonatomic,assign)NSString* resourceUrl;
@@ -29,6 +32,7 @@
 @implementation RMDailySentenceViewController
 @synthesize fileModel;
 @synthesize resourceUrl;
+@synthesize audioUrl;
 
 -(void)dealloc
 {
@@ -39,6 +43,7 @@
     self.shareButton = nil;
     [fileModel release];
     self.audioUrl = nil;
+    [_audioPlayer release];
     
     [super dealloc];
 }
@@ -61,6 +66,7 @@
         [backItem release];
     }
     self.resourceUrl = kDefaultResourceUrl;
+    self.audioUrl = kDefaultResourceUrl;
     
     fileModel = [[FileModel alloc]init];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -159,4 +165,27 @@
     return dataArray;
     
 }
+
+#pragma mark playAudio
+- (IBAction)playAudio:(AudioButton *)button
+{
+    if (!self.audioUrl) {
+        return;
+    }
+    if (_audioPlayer == nil) {
+        _audioPlayer = [[AudioPlayer alloc] init];
+    }
+    
+    if ([_audioPlayer.button isEqual:button]) {
+        [_audioPlayer play];
+    } else {
+        [_audioPlayer stop];
+        
+        _audioPlayer.button = button;
+        _audioPlayer.url = [NSURL URLWithString:self.audioUrl];
+        
+        [_audioPlayer play];
+    }
+}
+
 @end
