@@ -7,11 +7,12 @@
 //
 
 #import "RMAppDelegate.h"
-#import "SideBarViewController.h"
 #import "RMLeftSideViewController.h"
 #import "RMRightSideViewController.h"
 #import "RMTabbedViewController.h"
 #import "Flurry.h"
+#import "MMDrawerController.h"
+#import "MMDrawerVisualStateManager.h"
 
 @implementation RMAppDelegate
 
@@ -46,12 +47,6 @@
 //    return [[[UINavigationController alloc]initWithRootViewController:right]autorelease];
 }
 
-- (void)showSideBarControllerWithDirection:(SideBarShowDirection)direction
-{
-    if (self.sideBarController) {
-        [self.sideBarController showSideBarControllerWithDirection:direction];
-    }
-}
 
 #pragma mark AppDelegate
 - (void)dealloc
@@ -69,9 +64,48 @@
     
     [self setDefaultSettingsIfNotSet];
     
-    self.sideBarController = [[SideBarViewController alloc]initWithNibName:@"SideBarViewController" bundle:nil];
+    /*self.sideBarController = [[SideBarViewController alloc]initWithNibName:@"SideBarViewController" bundle:nil];
     self.sideBarController.delegate = self;
     self.window.rootViewController = self.sideBarController;
+    [self.window makeKeyAndVisible];
+    return YES;*/
+    return [self setRootViewController];
+}
+-(BOOL)setRootViewController
+{
+    UIViewController * leftSideDrawerViewController = [[[RMLeftSideViewController alloc]init]autorelease];//[[MMExampleLeftSideDrawerViewController alloc] init];
+    
+    UIViewController * centerViewController = [self middleViewController];//[[MMExampleCenterTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    UIViewController * rightSideDrawerViewController = [[[RMLeftSideViewController alloc]init]autorelease];//[[MMExampleRightSideDrawerViewController alloc] init];
+    
+    
+    MMDrawerController * drawerController = [[MMDrawerController alloc]
+                                             initWithCenterViewController:centerViewController
+                                             leftDrawerViewController:leftSideDrawerViewController
+                                             rightDrawerViewController:rightSideDrawerViewController];
+    [drawerController setMaximumRightDrawerWidth:kSideBarMargin];
+    [drawerController setMaximumLeftDrawerWidth:kSideBarMargin];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    
+    //animationStyle
+    [MMDrawerVisualStateManager sharedManager].leftDrawerAnimationType= MMDrawerAnimationTypeSwingingDoor;
+    [MMDrawerVisualStateManager sharedManager].rightDrawerAnimationType= MMDrawerAnimationTypeSwingingDoor;
+    
+    [drawerController
+     setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
+         MMDrawerControllerDrawerVisualStateBlock block;
+         block = [[MMDrawerVisualStateManager sharedManager] drawerVisualStateBlockForDrawerSide:drawerSide];
+         if(block){
+             block(drawerController, drawerSide, percentVisible);
+         }
+     }];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:drawerController];
+    // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

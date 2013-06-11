@@ -8,7 +8,6 @@
 
 #import "RMRightSideViewController.h"
 #import "RMTabbedViewController.h"
-#import "SideBarViewController.h"
 //const
 static NSString* reuseIdentifier = @"UITableViewCellStyleDefault";
 

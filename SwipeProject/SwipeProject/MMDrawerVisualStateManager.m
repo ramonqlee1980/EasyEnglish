@@ -19,17 +19,17 @@
 // THE SOFTWARE.
 
 
-#import "MMExampleDrawerVisualStateManager.h"
+#import "MMDrawerVisualStateManager.h"
 
 #import <QuartzCore/QuartzCore.h>
 
-@implementation MMExampleDrawerVisualStateManager
+@implementation MMDrawerVisualStateManager
 
-+ (MMExampleDrawerVisualStateManager *)sharedManager {
-    static MMExampleDrawerVisualStateManager *_sharedManager = nil;
++ (MMDrawerVisualStateManager *)sharedManager {
+    static MMDrawerVisualStateManager *_sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedManager = [[MMExampleDrawerVisualStateManager alloc] init];
+        _sharedManager = [[MMDrawerVisualStateManager alloc] init];
         [_sharedManager setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
         [_sharedManager setRightDrawerAnimationType:MMDrawerAnimationTypeParallax];
     });

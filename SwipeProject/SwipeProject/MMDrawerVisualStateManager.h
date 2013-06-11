@@ -30,12 +30,12 @@ typedef NS_ENUM(NSInteger, MMDrawerAnimationType){
     MMDrawerAnimationTypeParallax,
 };
 
-@interface MMExampleDrawerVisualStateManager : NSObject
+@interface MMDrawerVisualStateManager : NSObject
 
 @property (nonatomic,assign) MMDrawerAnimationType leftDrawerAnimationType;
 @property (nonatomic,assign) MMDrawerAnimationType rightDrawerAnimationType;
 
-+ (MMExampleDrawerVisualStateManager *)sharedManager;
++ (MMDrawerVisualStateManager *)sharedManager;
 
 -(MMDrawerControllerDrawerVisualStateBlock)drawerVisualStateBlockForDrawerSide:(MMDrawerSide)drawerSide;
 

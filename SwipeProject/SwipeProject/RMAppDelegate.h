@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SideBarViewController.h"
 
 @class MiddleViewController;
 
-@interface RMAppDelegate : UIResponder <UIApplicationDelegate,SideBarViewControllerDelegate>
+@interface RMAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MiddleViewController *viewController;
-@property(nonatomic,assign)SideBarViewController* sideBarController;
 
-- (void)showSideBarControllerWithDirection:(SideBarShowDirection)direction;
 @end

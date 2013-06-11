@@ -13,7 +13,7 @@
 #import "HTTPHelper.h"
 #import "RMDailySentenceJson.h"
 #import "AudioPlayer.h"
-#import "AudioCell.h"
+#import "UIViewController+MMDrawerController.h"
 
 //TODO::url TBC
 #define kDefaultResourceUrl @"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3"
@@ -55,7 +55,10 @@
     }
     return self;
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self stopAudio ];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -84,8 +87,8 @@
 #pragma mark util methods
 -(void)goBack:(UIView*)sender
 {
-    RMAppDelegate* appDelegate = (RMAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate showSideBarControllerWithDirection:SideBarShowDirectionLeft];
+    //RMAppDelegate* appDelegate = (RMAppDelegate*)[[UIApplication sharedApplication] delegate];
+    //[appDelegate showSideBarControllerWithDirection:SideBarShowDirectionLeft];
 }
 #pragma network utils
 -(NSString*)startNetworkRequest
@@ -185,6 +188,13 @@
         _audioPlayer.url = [NSURL URLWithString:self.audioUrl];
         
         [_audioPlayer play];
+    }
+}
+-(void)stopAudio
+{
+    if(_audioPlayer)
+    {
+        [_audioPlayer stop];
     }
 }
 

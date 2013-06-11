@@ -11,13 +11,13 @@
 #import "RMTableViewController.h"
 #import "RMAppDelegate.h"
 #import "SettingsViewController.h"
+#import "UIViewController+MMDrawerController.h"
 
 #define kDefaultResouceUrl @"http://www.idreems.com/openapi/aster.php?type=shuangzi"
 
 
 @interface RMTabbedViewController ()<InfiniTabBarDelegate,UITabbedTableViewDelegate>
 {
-    SideBarShowDirection direction;
 }
 @property(nonatomic,copy)NSString* mUrl;
 @property(nonatomic,copy)NSString* mTitle;
@@ -59,7 +59,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    direction = SideBarShowDirectionNone;
     
     //添加headbar
     UIImageView *headView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:kNavigationBarBackground]];
@@ -71,7 +70,7 @@
     UIButton* photobtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [photobtn setFrame:CGRectMake(kMarginToBoundaryX,kMarginToTopBoundary,kDefaultButtonSize,kDefaultButtonSize)];
     [photobtn setBackgroundImage:[UIImage imageNamed:kLeftSideBarButtonBackground] forState:UIControlStateNormal];
-    [photobtn addTarget:self action:@selector(showLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
+    [photobtn addTarget:self action:@selector(leftDrawerButtonPress:) forControlEvents:UIControlEventTouchUpInside];
     //    [photobtn setTag:FPhoto];
     [photobtn setHidden:NO];
     [self.view addSubview:photobtn];
@@ -118,11 +117,7 @@
     SettingsViewController* controller = [[[SettingsViewController alloc]init]autorelease];
     [self presentViewController:controller animated:YES completion:nil];
 }
--(void)showLeftSidebar:(UIView*)sender
-{
-    RMAppDelegate* appDelegate = (RMAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate showSideBarControllerWithDirection:SideBarShowDirectionLeft];
-}
+
 -(void)saveAsDefaultAster:(UIView*)sender
 {
     NSUserDefaults* setting = [NSUserDefaults standardUserDefaults];
@@ -171,5 +166,22 @@
 - (void)didSelectRow:(UIViewController*)controller
 {
     [self presentViewController:controller animated:YES completion:nil];
+}
+
+#pragma mark - Button Handlers
+-(void)leftDrawerButtonPress:(id)sender{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+-(void)rightDrawerButtonPress:(id)sender{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
+}
+
+-(void)doubleTap:(UITapGestureRecognizer*)gesture{
+    [self.mm_drawerController bouncePreviewForDrawerSide:MMDrawerSideLeft completion:nil];
+}
+
+-(void)twoFingerDoubleTap:(UITapGestureRecognizer*)gesture{
+    [self.mm_drawerController bouncePreviewForDrawerSide:MMDrawerSideRight completion:nil];
 }
 @end

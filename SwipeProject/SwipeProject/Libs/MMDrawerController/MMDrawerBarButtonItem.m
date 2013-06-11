@@ -54,7 +54,7 @@
 }
 
 -(UIColor *)menuButtonColorForState:(UIControlState)state{
-    UIColor * color;
+    UIColor * color = nil;
     switch (state) {
         case UIControlStateNormal:
             color = self.menuButtonNormalColor;
@@ -83,7 +83,7 @@
 }
 
 -(UIColor *)shadowColorForState:(UIControlState)state{
-    UIColor * color;
+    UIColor * color = nil;
     switch (state) {
         case UIControlStateNormal:
             color = self.shadowNormalColor;

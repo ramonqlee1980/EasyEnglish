@@ -7,13 +7,13 @@
 //
 
 #import "RMLeftSideViewController.h"
-#import "SideBarViewController.h"
 #import "RMTabbedViewController.h"
 #import "SettingsViewController.h"
 #import "Flurry.h"
 #import "RMNavigationController.h"
 #import "RMDailySentenceViewController.h"
 #import "RMAppDelegate.h"
+#import "UIViewController+MMDrawerController.h"
 
 NSInteger kLeftChannelGroupCount = 3;
 NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
@@ -39,7 +39,7 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {        
+    if (self) {
         // Custom initialization
     }
     return self;
@@ -98,15 +98,34 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
     [self.view addSubview:rightViewBtn];
     
     //add tableview
-    CGRect rc = [[UIScreen mainScreen]applicationFrame];
-    rc.origin.y = kNavigationBarHeight;
-    rc.origin.x = 0;
-    rc.size.height = rc.size.height-kNavigationBarHeight;
-    rc.size.width = kDeviceWidth-kSideBarMargin;
-    UITableView* tableView = [[[UITableView alloc]initWithFrame:rc style:UITableViewStyleGrouped]autorelease];
-    tableView.delegate = self;
-    tableView.dataSource = self;
+    /*CGRect rc = [[UIScreen mainScreen]applicationFrame];
+     rc.origin.y = kNavigationBarHeight;
+     rc.origin.x = 0;
+     rc.size.height = rc.size.height-kNavigationBarHeight;
+     rc.size.width = kDeviceWidth-kSideBarMargin;
+     UITableView* tableView = [[[UITableView alloc]initWithFrame:rc style:UITableViewStyleGrouped]autorelease];
+     tableView.delegate = self;
+     tableView.dataSource = self;
+     [self.view addSubview:tableView];*/
+    
+    UITableView* tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [tableView setDelegate:self];
+    [tableView setDataSource:self];
     [self.view addSubview:tableView];
+    [tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [tableView setSeparatorColor:[UIColor colorWithRed:49.0/255.0
+                                                 green:54.0/255.0
+                                                  blue:57.0/255.0
+                                                 alpha:1.0]];
+    /*[tableView setBackgroundColor:[UIColor colorWithRed:77.0/255.0
+     green:79.0/255.0
+     blue:80.0/255.0
+     alpha:1.0]];
+     
+     [self.view setBackgroundColor:[UIColor colorWithRed:66.0/255.0
+     green:69.0/255.0
+     blue:71.0/255.0
+     alpha:1.0]];*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -171,12 +190,19 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
         currentItem = [items objectAtIndex:indexPath.section];
     }
     NSDictionary* dict = [currentItem objectAtIndex:indexPath.row];
-    if (delegate && [delegate respondsToSelector:@selector(leftSideBarSelectWithController:)])
-    {
-        NSString* title = [dict objectForKey:kTitle];
-        [Flurry logEvent:title];
-        [delegate leftSideBarSelectWithController:[self subViewController:[dict objectForKey:kUrl] withTitle:title]];
-    }
+    /*if (delegate && [delegate respondsToSelector:@selector(leftSideBarSelectWithController:)])
+     {
+     NSString* title = [dict objectForKey:kTitle];
+     [Flurry logEvent:title];
+     [delegate leftSideBarSelectWithController:[self subViewController:[dict objectForKey:kUrl] withTitle:title]];
+     }*/
+    
+    NSString* title = [dict objectForKey:kTitle];
+    [Flurry logEvent:title];
+    [self.mm_drawerController
+     setCenterViewController:[self subViewController:[dict objectForKey:kUrl] withTitle:title]
+     withFullCloseAnimation:YES
+     completion:nil];
     
     [tView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -184,34 +210,16 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
 -(UIViewController*)subViewController:(NSString*)url withTitle:(NSString*)title
 {
     RMNavigationController* controller = nil;
-    if (YES) {     
+    if (YES) {
         UIViewController* innerController = [[[RMDailySentenceViewController alloc]initWithNibName:@"RMDailySentenceViewController" bundle:nil]autorelease];
         controller = [[[RMNavigationController alloc]initWithRootViewController:innerController]autorelease];
         controller.title = title;
-        [controller setLeftBarButton:[self getLeftButton]];
+        //[controller setLeftBarButton:[self getLeftButton]];
     }
-//    if (!controller) {
-//        controller = [[[RMTabbedViewController alloc]init:url withTitle:title]autorelease];;
-//    }
+    //    if (!controller) {
+    //        controller = [[[RMTabbedViewController alloc]init:url withTitle:title]autorelease];;
+    //    }
     return controller;
-}
--(UIButton*)getLeftButton
-{
-    //left 的按钮
-    if (showLeftSideBarButton) {
-        return showLeftSideBarButton;
-    }
-    self.showLeftSideBarButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [showLeftSideBarButton setBackgroundImage:[UIImage imageNamed:kLeftSideBarButtonBackground] forState:UIControlStateNormal];
-    [showLeftSideBarButton addTarget:self action:@selector(showLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-    [showLeftSideBarButton setHidden:NO];
-
-    return showLeftSideBarButton;
-}
--(void)showLeftSidebar:(UIView*)sender
-{
-    RMAppDelegate* appDelegate = (RMAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate showSideBarControllerWithDirection:SideBarShowDirectionLeft];
 }
 
 -(void)settingClick:(UIView*)sender
