@@ -19,7 +19,12 @@ NSString *stopImage = @"stop.png";
 
 @synthesize image;
 
-
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    id ret = [super initWithCoder:aDecoder];
+    self.image = [UIImage imageNamed:playImage];
+    return ret;
+}
 - (id)initWithFrame:(CGRect)frame 
 {
     self = [super initWithFrame:frame];

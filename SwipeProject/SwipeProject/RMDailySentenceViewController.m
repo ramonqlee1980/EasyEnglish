@@ -14,6 +14,7 @@
 #import "RMDailySentenceJson.h"
 #import "AudioPlayer.h"
 #import "UIViewController+MMDrawerController.h"
+#import "AudioButton.h"
 
 //TODO::url TBC
 #define kDefaultResourceUrl @"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3"
