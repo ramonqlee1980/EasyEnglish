@@ -18,6 +18,7 @@
 
 //TODO::url TBC
 #define kDefaultResourceUrl @"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3"
+#define kDailySentenceUrl @"http://www.idreems.com/openapi/easyenglish.php?type=sen"
 
 @interface RMDailySentenceViewController ()
 {
@@ -27,7 +28,7 @@
 }
 @property(nonatomic,assign)FileModel* fileModel;
 @property(nonatomic,assign)NSString* resourceUrl;
-@property(nonatomic,assign)NSString* audioUrl;
+@property(nonatomic,copy)NSString* audioUrl;
 @end
 
 @implementation RMDailySentenceViewController
@@ -69,7 +70,7 @@
         self.navigationItem.rightBarButtonItem = backItem;
         [backItem release];
     }
-    self.resourceUrl = kDefaultResourceUrl;
+    self.resourceUrl = kDailySentenceUrl;
     self.audioUrl = kDefaultResourceUrl;
     
     fileModel = [[FileModel alloc]init];
@@ -133,21 +134,28 @@
     NSArray* data = [self loadContent:fileName];
     if (data && data.count) {
         RMDailySentenceJson* jsonData = [data objectAtIndex:0];
-        
-        if (jsonData.imageUrl && jsonData.imageUrl.length)
+        [self performSelectorOnMainThread:@selector(updateViewsOnMainThread:) withObject:jsonData waitUntilDone:YES];
+    }
+}
+-(void)updateViewsOnMainThread:(RMDailySentenceJson*)jsonData
+{
+    if(!jsonData)
+    {
+        return;
+    }
+    if (jsonData.imageUrl && jsonData.imageUrl.length)
+    {
+        UIImage* placeHolderImage = [UIImage imageNamed:kNavigationBarBackground];
+        if([self.imageView respondsToSelector:@selector(setImageWithURL:placeholderImage:)])
         {
-            UIImage* placeHolderImage = [UIImage imageNamed:kNavigationBarBackground];
-            if([self.imageView respondsToSelector:@selector(setImageWithURL:placeholderImage:)])
-            {
-                [self.imageView performSelector:@selector(setImageWithURL:placeholderImage:) withObject:[NSURL URLWithString:jsonData.imageUrl] withObject:placeHolderImage];
-            }
-            
+            [self.imageView performSelector:@selector(setImageWithURL:placeholderImage:) withObject:[NSURL URLWithString:jsonData.imageUrl] withObject:placeHolderImage];
         }
         
-        self.foreignTextView.text = jsonData.foreignText;
-        self.chineseTextView.text = jsonData.chineseText;
-        self.audioUrl = jsonData.audioUrl;
     }
+    
+    self.foreignTextView.text = jsonData.foreignText;
+    self.chineseTextView.text = jsonData.chineseText;
+    self.audioUrl = [jsonData.audioUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 -(NSMutableArray*)loadContent:(NSString*)fileName
 {
@@ -157,11 +165,9 @@
         NSError* error;
         id res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         if (res && [res isKindOfClass:[NSDictionary class]]) {
-            NSArray* arr = [res objectForKey:kData];
-            for (id item in arr) {
-                RMDailySentenceJson* sts = [RMDailySentenceJson statusWithJsonDictionary:item];
-                [dataArray addObject:sts];
-            }
+            NSDictionary* item = [res objectForKey:kData];
+            RMDailySentenceJson* sts = [RMDailySentenceJson statusWithJsonDictionary:item];
+            [dataArray addObject:sts];
         } else {
             //NSLog(@"arr dataSourceDidError == %@",arrayData);
         }
