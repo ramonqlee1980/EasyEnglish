@@ -28,6 +28,7 @@
     AudioPlayer *_audioPlayer;
     PMCalendarController *pmCC;
     NSString* date;
+    BOOL shouldRefreshData;
 }
 @property(nonatomic,assign)FileModel* fileModel;
 @property(nonatomic,assign)NSString* resourceUrl;
@@ -238,6 +239,15 @@
     self.pmCC = [[PMCalendarController alloc] init];
     self.pmCC.delegate = self;
     self.pmCC.mondayFirstDayOfWeek = YES;
+    self.pmCC.allowsPeriodSelection = NO;
+    
+    PMPeriod* peroid = [[[PMPeriod alloc]init]autorelease];
+    peroid.endDate = [NSDate date];
+    NSDate* todayLastYear = [NSDate date];
+    todayLastYear = [todayLastYear dateByAddingMonths:-12];
+    peroid.startDate = todayLastYear;
+    self.pmCC.allowedPeriod = peroid;
+    self.pmCC.allowsLongPressYearChange= YES;
     
     [self.pmCC presentCalendarFromView:sender
               permittedArrowDirections:PMCalendarArrowDirectionAny
@@ -247,21 +257,48 @@
      permittedArrowDirections:PMCalendarArrowDirectionAny
      animated:YES];*/
     [self calendarController:self.pmCC didChangePeriod:self.pmCC.period];
+    
+    shouldRefreshData = NO;
 }
 #pragma mark PMCalendarControllerDelegate methods
 
 - (void)calendarController:(PMCalendarController *)calendarController didChangePeriod:(PMPeriod *)newPeriod
 {
-    //    periodLabel.text = [NSString stringWithFormat:@"%@ - %@"
-    //                        , [newPeriod.startDate dateStringWithFormat:@"dd-MM-yyyy"]
-    //                        , [newPeriod.endDate dateStringWithFormat:@"dd-MM-yyyy"]];
+    //later than today?
+    NSDate* today = [NSDate date];
+    //判断是否已经发布数据，如果没有的话，给出一个友好的提示
+    if ([newPeriod.startDate compare:today]==NSOrderedDescending ) {
+        NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+        NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+                                                   fromDate:today
+                                                     toDate:newPeriod.startDate
+                                                    options:0];
+        NSString* tipMessage = [NSString stringWithFormat:@"我还有%i年零%i个月%i天才出生，请耐心等待!",components.year,components.month,components.day+1];
+        if(components.year==0)
+        {
+            tipMessage = [NSString stringWithFormat:@"我还有%i个月零%i天才出生，请耐心等待!",components.month,components.day+1];
+        }
+        if(components.month==0)
+        {
+            tipMessage = [NSString stringWithFormat:@"我还有%i天才出生，请耐心等待!",components.day+1];
+        }
+        
+        [self.view performSelectorOnMainThread:@selector(makeToast:) withObject:tipMessage waitUntilDone:YES];
+        return;
+    }
     self.date = [newPeriod.startDate dateStringWithFormat:@"yyyy-MM-dd"];
+    shouldRefreshData = YES;
 }
 /**
  * Called on the delegate right after calendar controller removes itself from a superview.
  */
 - (void)calendarControllerDidDismissCalendar:(PMCalendarController *)calendarController
 {
+    if(!shouldRefreshData)
+    {
+        return;
+    }
+    [self.view performSelectorOnMainThread:@selector(makeToast:) withObject:@"我来啦，请稍等奥" waitUntilDone:YES];
     [self startNetworkRequest];
 }
 @end
