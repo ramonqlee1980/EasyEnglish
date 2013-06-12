@@ -52,6 +52,9 @@
 		30B084C11768664C0067E90B /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084B81768664C0067E90B /* PMDimmingView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		30B084C21768664C0067E90B /* PMPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084BA1768664C0067E90B /* PMPeriod.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		30B084C31768664C0067E90B /* PMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084BC1768664C0067E90B /* PMSelectionView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		30B084C517688F9E0067E90B /* calendar_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 30B084C417688F9D0067E90B /* calendar_48.png */; };
+		30B084C9176891EF0067E90B /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 30B084C7176891EE0067E90B /* share.png */; };
+		30B084CB176892390067E90B /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 30B084CA176892390067E90B /* favorite.png */; };
 		30D9D6A8173865F20049E877 /* AddBookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D9D698173865F10049E877 /* AddBookmarkViewController.m */; };
 		30D9D6A9173865F20049E877 /* BookmarkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D9D69A173865F10049E877 /* BookmarkObject.m */; };
 		30D9D6AA173865F20049E877 /* CIALBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30D9D69B173865F10049E877 /* CIALBrowser.bundle */; };
@@ -219,6 +222,9 @@
 		30B084BA1768664C0067E90B /* PMPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPeriod.m; sourceTree = "<group>"; };
 		30B084BB1768664C0067E90B /* PMSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSelectionView.h; sourceTree = "<group>"; };
 		30B084BC1768664C0067E90B /* PMSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMSelectionView.m; sourceTree = "<group>"; };
+		30B084C417688F9D0067E90B /* calendar_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_48.png; sourceTree = "<group>"; };
+		30B084C7176891EE0067E90B /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		30B084CA176892390067E90B /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		30D9D697173865F10049E877 /* AddBookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookmarkViewController.h; sourceTree = "<group>"; };
 		30D9D698173865F10049E877 /* AddBookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookmarkViewController.m; sourceTree = "<group>"; };
 		30D9D699173865F10049E877 /* BookmarkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkObject.h; sourceTree = "<group>"; };
@@ -739,6 +745,9 @@
 		30E1A92A1739E92B0027F2DD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				30B084CA176892390067E90B /* favorite.png */,
+				30B084C7176891EE0067E90B /* share.png */,
+				30B084C417688F9D0067E90B /* calendar_48.png */,
 				3047DA8C174AE45D0076A770 /* Icon-114.png */,
 				3047DA8A174AE4560076A770 /* Icon-57.png */,
 				30F430AE17499146002850E6 /* settings-icon.png */,
@@ -925,6 +934,9 @@
 				30B0848D1766A5160067E90B /* play.png in Resources */,
 				30B0848E1766A5160067E90B /* screenshots.png in Resources */,
 				30B0848F1766A5160067E90B /* stop.png in Resources */,
+				30B084C517688F9E0067E90B /* calendar_48.png in Resources */,
+				30B084C9176891EF0067E90B /* share.png in Resources */,
+				30B084CB176892390067E90B /* favorite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
