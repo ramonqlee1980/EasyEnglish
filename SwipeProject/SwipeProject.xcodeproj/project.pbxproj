@@ -45,6 +45,13 @@
 		30B084A41766B4560067E90B /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B0849F1766B4560067E90B /* MMDrawerVisualState.m */; };
 		30B084A51766B4560067E90B /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084A11766B4560067E90B /* UIViewController+MMDrawerController.m */; };
 		30B084A817676AC40067E90B /* MMDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084A717676AC40067E90B /* MMDrawerVisualStateManager.m */; };
+		30B084BD1768664C0067E90B /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084AE1768664C0067E90B /* NSDate+Helpers.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		30B084BE1768664C0067E90B /* PMCalendarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084B01768664C0067E90B /* PMCalendarBackgroundView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		30B084BF1768664C0067E90B /* PMCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084B31768664C0067E90B /* PMCalendarController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		30B084C01768664C0067E90B /* PMCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084B61768664C0067E90B /* PMCalendarView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		30B084C11768664C0067E90B /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084B81768664C0067E90B /* PMDimmingView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		30B084C21768664C0067E90B /* PMPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084BA1768664C0067E90B /* PMPeriod.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		30B084C31768664C0067E90B /* PMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B084BC1768664C0067E90B /* PMSelectionView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		30D9D6A8173865F20049E877 /* AddBookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D9D698173865F10049E877 /* AddBookmarkViewController.m */; };
 		30D9D6A9173865F20049E877 /* BookmarkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D9D69A173865F10049E877 /* BookmarkObject.m */; };
 		30D9D6AA173865F20049E877 /* CIALBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30D9D69B173865F10049E877 /* CIALBrowser.bundle */; };
@@ -195,6 +202,23 @@
 		30B084A11766B4560067E90B /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		30B084A617676AC40067E90B /* MMDrawerVisualStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerVisualStateManager.h; sourceTree = "<group>"; };
 		30B084A717676AC40067E90B /* MMDrawerVisualStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualStateManager.m; sourceTree = "<group>"; };
+		30B084AB1768664C0067E90B /* PMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendar.h; sourceTree = "<group>"; };
+		30B084AD1768664C0067E90B /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = "<group>"; };
+		30B084AE1768664C0067E90B /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = "<group>"; };
+		30B084AF1768664C0067E90B /* PMCalendarBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarBackgroundView.h; sourceTree = "<group>"; };
+		30B084B01768664C0067E90B /* PMCalendarBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarBackgroundView.m; sourceTree = "<group>"; };
+		30B084B11768664C0067E90B /* PMCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarConstants.h; sourceTree = "<group>"; };
+		30B084B21768664C0067E90B /* PMCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarController.h; sourceTree = "<group>"; };
+		30B084B31768664C0067E90B /* PMCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarController.m; sourceTree = "<group>"; };
+		30B084B41768664C0067E90B /* PMCalendarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarHelpers.h; sourceTree = "<group>"; };
+		30B084B51768664C0067E90B /* PMCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarView.h; sourceTree = "<group>"; };
+		30B084B61768664C0067E90B /* PMCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarView.m; sourceTree = "<group>"; };
+		30B084B71768664C0067E90B /* PMDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDimmingView.h; sourceTree = "<group>"; };
+		30B084B81768664C0067E90B /* PMDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDimmingView.m; sourceTree = "<group>"; };
+		30B084B91768664C0067E90B /* PMPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPeriod.h; sourceTree = "<group>"; };
+		30B084BA1768664C0067E90B /* PMPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPeriod.m; sourceTree = "<group>"; };
+		30B084BB1768664C0067E90B /* PMSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSelectionView.h; sourceTree = "<group>"; };
+		30B084BC1768664C0067E90B /* PMSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMSelectionView.m; sourceTree = "<group>"; };
 		30D9D697173865F10049E877 /* AddBookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookmarkViewController.h; sourceTree = "<group>"; };
 		30D9D698173865F10049E877 /* AddBookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookmarkViewController.m; sourceTree = "<group>"; };
 		30D9D699173865F10049E877 /* BookmarkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkObject.h; sourceTree = "<group>"; };
@@ -511,6 +535,38 @@
 			path = MMDrawerController;
 			sourceTree = "<group>";
 		};
+		30B084AA1768664B0067E90B /* PMCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				30B084AB1768664C0067E90B /* PMCalendar.h */,
+				30B084AC1768664C0067E90B /* src */,
+			);
+			path = PMCalendar;
+			sourceTree = "<group>";
+		};
+		30B084AC1768664C0067E90B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				30B084AD1768664C0067E90B /* NSDate+Helpers.h */,
+				30B084AE1768664C0067E90B /* NSDate+Helpers.m */,
+				30B084AF1768664C0067E90B /* PMCalendarBackgroundView.h */,
+				30B084B01768664C0067E90B /* PMCalendarBackgroundView.m */,
+				30B084B11768664C0067E90B /* PMCalendarConstants.h */,
+				30B084B21768664C0067E90B /* PMCalendarController.h */,
+				30B084B31768664C0067E90B /* PMCalendarController.m */,
+				30B084B41768664C0067E90B /* PMCalendarHelpers.h */,
+				30B084B51768664C0067E90B /* PMCalendarView.h */,
+				30B084B61768664C0067E90B /* PMCalendarView.m */,
+				30B084B71768664C0067E90B /* PMDimmingView.h */,
+				30B084B81768664C0067E90B /* PMDimmingView.m */,
+				30B084B91768664C0067E90B /* PMPeriod.h */,
+				30B084BA1768664C0067E90B /* PMPeriod.m */,
+				30B084BB1768664C0067E90B /* PMSelectionView.h */,
+				30B084BC1768664C0067E90B /* PMSelectionView.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		30D9D696173865F10049E877 /* CIALBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +800,7 @@
 		30E6E7E11734E5A000EDE8D2 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				30B084AA1768664B0067E90B /* PMCalendar */,
 				30B084991766B4560067E90B /* MMDrawerController */,
 				30B0847D1766A5160067E90B /* AudioPlayer */,
 				30B08468176693510067E90B /* SDWebImage */,
@@ -947,6 +1004,13 @@
 				30B084A41766B4560067E90B /* MMDrawerVisualState.m in Sources */,
 				30B084A51766B4560067E90B /* UIViewController+MMDrawerController.m in Sources */,
 				30B084A817676AC40067E90B /* MMDrawerVisualStateManager.m in Sources */,
+				30B084BD1768664C0067E90B /* NSDate+Helpers.m in Sources */,
+				30B084BE1768664C0067E90B /* PMCalendarBackgroundView.m in Sources */,
+				30B084BF1768664C0067E90B /* PMCalendarController.m in Sources */,
+				30B084C01768664C0067E90B /* PMCalendarView.m in Sources */,
+				30B084C11768664C0067E90B /* PMDimmingView.m in Sources */,
+				30B084C21768664C0067E90B /* PMPeriod.m in Sources */,
+				30B084C31768664C0067E90B /* PMSelectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,26 +15,35 @@
 #import "AudioPlayer.h"
 #import "UIViewController+MMDrawerController.h"
 #import "AudioButton.h"
+#import "PMCalendar.h"
 
 //TODO::url TBC
 #define kDefaultResourceUrl @"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3"
-#define kDailySentenceUrl @"http://www.idreems.com/openapi/easyenglish.php?type=sen"
+#define kDailySentenceUrl @"http://www.idreems.com/openapi/easyenglish.php?type=sen&date=%@"
 
-@interface RMDailySentenceViewController ()
+@interface RMDailySentenceViewController ()<PMCalendarControllerDelegate>
 {
     FileModel* fileModel;
     NSString* resourceUrl;
     AudioPlayer *_audioPlayer;
+    PMCalendarController *pmCC;
+    NSString* date;
 }
 @property(nonatomic,assign)FileModel* fileModel;
 @property(nonatomic,assign)NSString* resourceUrl;
 @property(nonatomic,copy)NSString* audioUrl;
+@property (nonatomic, assign) PMCalendarController *pmCC;
+@property(nonatomic,copy)NSString* date;
+
+- (IBAction)showCalendar:(id)sender;
 @end
 
 @implementation RMDailySentenceViewController
 @synthesize fileModel;
 @synthesize resourceUrl;
 @synthesize audioUrl;
+@synthesize pmCC;
+@synthesize date;
 
 -(void)dealloc
 {
@@ -46,6 +55,7 @@
     [fileModel release];
     self.audioUrl = nil;
     [_audioPlayer release];
+    self.pmCC = nil;
     
     [super dealloc];
 }
@@ -70,12 +80,17 @@
         self.navigationItem.rightBarButtonItem = backItem;
         [backItem release];
     }
-    self.resourceUrl = kDailySentenceUrl;
+    if(!date)
+    {
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        self.date = [formatter stringFromDate:[NSDate date]];
+    }
+    self.resourceUrl = [NSString stringWithFormat:kDailySentenceUrl,date];
     self.audioUrl = kDefaultResourceUrl;
     
     fileModel = [[FileModel alloc]init];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetServerData:)    name:kTimelineJsonRefreshChanged(self.resourceUrl)          object:nil];
+    
     
     NSString* path = [self startNetworkRequest];
     [self updateViews:path];
@@ -97,10 +112,23 @@
 {
     //start request for data
     FileModel* model = [self fileModel];
+    
+    if(!date)
+    {
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        self.date = [formatter stringFromDate:[NSDate date]];
+    }
+    self.resourceUrl = [NSString stringWithFormat:kDailySentenceUrl,date];
+    
     model.fileURL = self.resourceUrl;//[NSString stringWithFormat:kDefaultResouceUrl,kInitPage];//for the latest page
     model.notificationName = kTimelineJsonRefreshChanged(self.resourceUrl);
     model.fileName =kRefreshFileName(self.resourceUrl);
     model.destPath = kDefaultFilePath;
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetServerData:)    name:kTimelineJsonRefreshChanged(self.resourceUrl)          object:nil];
     
     [[HTTPHelper sharedInstance] beginRequest:model isBeginDown:YES setAllowResumeForFileDownloads:NO];
     
@@ -155,7 +183,8 @@
     
     self.foreignTextView.text = jsonData.foreignText;
     self.chineseTextView.text = jsonData.chineseText;
-    self.audioUrl = [jsonData.audioUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //TODO::声音文件获取存在问题，需要解决
+    self.audioUrl = [jsonData.audioUrl stringByReplacingOccurrencesOfString:@" " withString:@","];//[jsonData.audioUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 -(NSMutableArray*)loadContent:(NSString*)fileName
 {
@@ -204,5 +233,35 @@
         [_audioPlayer stop];
     }
 }
+- (IBAction)showCalendar:(id)sender
+{
+    self.pmCC = [[PMCalendarController alloc] init];
+    self.pmCC.delegate = self;
+    self.pmCC.mondayFirstDayOfWeek = YES;
+    
+    [self.pmCC presentCalendarFromView:sender
+              permittedArrowDirections:PMCalendarArrowDirectionAny
+                              animated:YES];
+    /*    [pmCC presentCalendarFromRect:[sender frame]
+     inView:[sender superview]
+     permittedArrowDirections:PMCalendarArrowDirectionAny
+     animated:YES];*/
+    [self calendarController:self.pmCC didChangePeriod:self.pmCC.period];
+}
+#pragma mark PMCalendarControllerDelegate methods
 
+- (void)calendarController:(PMCalendarController *)calendarController didChangePeriod:(PMPeriod *)newPeriod
+{
+    //    periodLabel.text = [NSString stringWithFormat:@"%@ - %@"
+    //                        , [newPeriod.startDate dateStringWithFormat:@"dd-MM-yyyy"]
+    //                        , [newPeriod.endDate dateStringWithFormat:@"dd-MM-yyyy"]];
+    self.date = [newPeriod.startDate dateStringWithFormat:@"yyyy-MM-dd"];
+}
+/**
+ * Called on the delegate right after calendar controller removes itself from a superview.
+ */
+- (void)calendarControllerDidDismissCalendar:(PMCalendarController *)calendarController
+{
+    [self startNetworkRequest];
+}
 @end
