@@ -15,4 +15,5 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MiddleViewController *viewController;
 
++(UIViewController*)getViewController:(NSString*)url withTitle:(NSString*)title;
 @end

@@ -2,29 +2,94 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>查单词</key>
+	<key>CNN</key>
 	<dict>
 		<key>order</key>
 		<string>1</string>
 		<key>Icon</key>
 		<string>Aquarius</string>
 		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=shuiping</string>
+		<string>http://www.idreems.com/openapi/aster.php?type=CNN</string>
 		<key>Title</key>
-		<string>查单词</string>
+		<string>CNN</string>
 		<key>TimeSpan</key>
 		<string></string>
 	</dict>
-	<key>发音小蜜</key>
+	<key>Reuters</key>
 	<dict>
 		<key>order</key>
 		<string>2</string>
 		<key>Icon</key>
 		<string>Aquarius</string>
 		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=shuiping</string>
+		<string>http://www.idreems.com/openapi/aster.php?type=Reuters</string>
 		<key>Title</key>
-		<string>发音小秘</string>
+		<string>Reuters</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>GlobalTimes</key>
+	<dict>
+		<key>order</key>
+		<string>3</string>
+		<key>Icon</key>
+		<string>Aquarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/aster.php?type=GlobalTimes</string>
+		<key>Title</key>
+		<string>GlobalTimes</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>TIME</key>
+	<dict>
+		<key>order</key>
+		<string>4</string>
+		<key>Icon</key>
+		<string>Aquarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/aster.php?type=TIME</string>
+		<key>Title</key>
+		<string>TIME</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>TheWashingtonPost</key>
+	<dict>
+		<key>order</key>
+		<string>5</string>
+		<key>Icon</key>
+		<string>Aquarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/aster.php?type=TheWashingtonPost</string>
+		<key>Title</key>
+		<string>TheWashingtonPost</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>THENEWYORKER</key>
+	<dict>
+		<key>order</key>
+		<string>6</string>
+		<key>Icon</key>
+		<string>Aquarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/aster.php?type=THENEWYORKER</string>
+		<key>Title</key>
+		<string>THENEWYORKER</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>USATODAY</key>
+	<dict>
+		<key>order</key>
+		<string>7</string>
+		<key>Icon</key>
+		<string>Aquarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/aster.php?type=USATODAY</string>
+		<key>Title</key>
+		<string>USATODAY</string>
 		<key>TimeSpan</key>
 		<string></string>
 	</dict>

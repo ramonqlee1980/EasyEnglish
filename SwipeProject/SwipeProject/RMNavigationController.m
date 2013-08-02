@@ -119,6 +119,7 @@
     }
     
     UIButton*titleView = [UIButton buttonWithType:UIButtonTypeCustom];
+    
     [titleView setFrame:CGRectMake(kMarginToBoundaryX+kDefaultButtonSize,kMarginToTopBoundary,kMiddleSpace,kDefaultButtonSize)];
     [titleView setTitle:title?title:kDefaultTitle forState:UIControlStateNormal];
     [titleView.titleLabel setFont:[UIFont boldSystemFontOfSize:kTitleFontSize]];
@@ -127,5 +128,19 @@
     [titleView setHidden:NO];
     [titleView setTag:kTitleViewTag];
     [self.view addSubview:titleView];
+}
+-(void)LeftButtonTouchDown:(UIView*)btn
+{
+    if (btn) {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
+-(void)enableBackButton
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"Back" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(LeftButtonTouchDown:)forControlEvents: UIControlEventTouchUpInside];
+    //处理按钮松开状态
+    [self setLeftBarButton:button];
 }
 @end

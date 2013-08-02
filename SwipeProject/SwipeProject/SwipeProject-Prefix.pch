@@ -17,11 +17,16 @@
 #define kDeviceWidth  [[UIScreen mainScreen]applicationFrame].size.width
 #define kDeviceHeight [[UIScreen mainScreen]applicationFrame].size.height
 
-#define kSideBarMargin  200
+#define kSideBarMargin  300
 
+#define kTitleFontSize 18.0f
+#define kContentFontSize 16.0f
+#define kUIFont4Content [UIFont fontWithName:@"Times New Roman" size:kContentFontSize]
+#define kUIFont4Title [UIFont boldSystemFontOfSize:kTitleFontSize]
+
+#define TintColor [UIColor brownColor]
 
 #define kDefaultTitle @"随便逛逛"
-#define kTitleFontSize 18
 #define kNavigationBarHeight 44
 #define kMarginToBoundaryX 8
 #define kDefaultButtonSize 32

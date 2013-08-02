@@ -13,10 +13,46 @@
 #import "Flurry.h"
 #import "MMDrawerController.h"
 #import "MMDrawerVisualStateManager.h"
+#import "RMNavigationController.h"
+#import "RMDailySentenceViewController.h"
+#import "RMDailyArticlesViewController.h"
 
 @implementation RMAppDelegate
 
 #pragma mark SideBarViewControllerDelegate
+/**
+ 将url和viewvontroller建立对应关系
+ */
++(UIViewController*)getViewController:(NSString*)url withTitle:(NSString*)title
+{
+    UIViewController* controller = nil;
+    //url to viewcontroller
+    NSString* kDailySentenceUrl = @"http://www.idreems.com/openapi/easyenglish.php?type=sen";
+    NSString* kDailyArticleUrlPrefix = @"http://www.idreems.com/openapi/articles.php";
+    
+    if ([kDailySentenceUrl isEqualToString:url]) {
+        UIViewController* innerController = [[[RMDailySentenceViewController alloc]initWithNibName:@"RMDailySentenceViewController" bundle:nil]autorelease];
+        controller = [[[UINavigationController alloc]initWithRootViewController:innerController]autorelease];
+        innerController.title = title;
+//        controller.title = title;
+        //[controller setLeftBarButton:[self getLeftButton]];
+    }else if ([url hasPrefix:kDailyArticleUrlPrefix])
+    {
+        //daily view controller with tableview support
+        RMDailyArticlesViewController* innerController = [[[RMDailyArticlesViewController alloc]init]autorelease];
+        [innerController setUrl:url];
+        innerController.title = title;
+        controller = [[[UINavigationController alloc]initWithRootViewController:innerController]autorelease];
+//        controller.title = title;
+    }
+    else
+    {
+        controller = [[[RMTabbedViewController alloc]init:url withTitle:title]autorelease];
+    }
+    return controller;
+}
+
+
 - (UIViewController*)middleViewController
 {
     //TODO::subchannel of current channel
@@ -29,7 +65,7 @@
         url = [dict objectForKey:kUrl];
     }
     
-    return [[[RMTabbedViewController alloc]init:url withTitle:title]autorelease];
+    return [RMAppDelegate getViewController:url withTitle:title];
 }
 -(UIViewController*)leftViewController:(id<SiderBarDelegate>)delegate
 {
@@ -42,9 +78,9 @@
 {
     //TODO::settings,recommend,etc
     return nil;
-//    RMRightSideViewController* right= [[[RMRightSideViewController alloc]init]autorelease];
-//    right.delegate = delegate;
-//    return [[[UINavigationController alloc]initWithRootViewController:right]autorelease];
+    //    RMRightSideViewController* right= [[[RMRightSideViewController alloc]init]autorelease];
+    //    right.delegate = delegate;
+    //    return [[[UINavigationController alloc]initWithRootViewController:right]autorelease];
 }
 
 
@@ -65,10 +101,10 @@
     [self setDefaultSettingsIfNotSet];
     
     /*self.sideBarController = [[SideBarViewController alloc]initWithNibName:@"SideBarViewController" bundle:nil];
-    self.sideBarController.delegate = self;
-    self.window.rootViewController = self.sideBarController;
-    [self.window makeKeyAndVisible];
-    return YES;*/
+     self.sideBarController.delegate = self;
+     self.window.rootViewController = self.sideBarController;
+     [self.window makeKeyAndVisible];
+     return YES;*/
     return [self setRootViewController];
 }
 -(BOOL)setRootViewController
@@ -115,15 +151,18 @@
     NSUserDefaults* setting = [NSUserDefaults standardUserDefaults];
     NSDictionary* dict = [setting objectForKey:kAsterName];
     if (!dict) {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"LeftChannels" ofType:@"plist"];
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"LeftChannelGroup1" ofType:@"plist"];
         NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
         NSLog(@"%@", data);//直接打印数据
         //add into section
         for (NSDictionary* item in [data allValues]) {
-            //set
-            [setting setObject:item forKey:kAsterName];
-            [setting synchronize];
-            break;
+            if([@"1" isEqualToString:[item objectForKey:@"order"]])
+            {
+                //set
+                [setting setObject:item forKey:kAsterName];
+                [setting synchronize];
+                break;
+            }
         }
     }
 }

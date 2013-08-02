@@ -13,5 +13,6 @@
 @property(nonatomic,retain) UIButton *leftBarButton;
 @property(nonatomic,retain) UIButton *rightBarButton;
 
-- (id)initWithRootViewController:(UIViewController *)rootViewController; 
+- (id)initWithRootViewController:(UIViewController *)rootViewController;
+-(void)enableBackButton;
 @end

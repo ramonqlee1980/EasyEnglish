@@ -15,7 +15,8 @@
 #import "RMAppDelegate.h"
 #import "UIViewController+MMDrawerController.h"
 
-NSInteger kLeftChannelGroupCount = 3;
+NSInteger kLeftChannelGroupCount = 2;
+
 NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
 
 @interface RMLeftSideViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -209,17 +210,7 @@ NSString*kLeftChannelGroupFormatter= @"LeftChannelGroup%d";
 #pragma mark viewcontrollers
 -(UIViewController*)subViewController:(NSString*)url withTitle:(NSString*)title
 {
-    RMNavigationController* controller = nil;
-    if (YES) {
-        UIViewController* innerController = [[[RMDailySentenceViewController alloc]initWithNibName:@"RMDailySentenceViewController" bundle:nil]autorelease];
-        controller = [[[RMNavigationController alloc]initWithRootViewController:innerController]autorelease];
-        controller.title = title;
-        //[controller setLeftBarButton:[self getLeftButton]];
-    }
-    //    if (!controller) {
-    //        controller = [[[RMTabbedViewController alloc]init:url withTitle:title]autorelease];;
-    //    }
-    return controller;
+    return [RMAppDelegate getViewController:url withTitle:title];
 }
 
 -(void)settingClick:(UIView*)sender

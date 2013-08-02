@@ -2,81 +2,120 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>单词</key>
+	<key>每日短句</key>
 	<dict>
 		<key>order</key>
 		<string>1</string>
 		<key>Icon</key>
 		<string>Aquarius</string>
 		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=shuiping</string>
-		<key>Title</key>
-		<string>每日单词</string>
-		<key>TimeSpan</key>
-		<string></string>
-	</dict>
-	<key>短句</key>
-	<dict>
-		<key>order</key>
-		<string>2</string>
-		<key>Icon</key>
-		<string>Pisces</string>
-		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=shuangyu</string>
+		<string>http://www.idreems.com/openapi/easyenglish.php?type=sen</string>
 		<key>Title</key>
 		<string>每日短句</string>
 		<key>TimeSpan</key>
 		<string></string>
 	</dict>
-	<key>新闻</key>
+	<key>每日美文</key>
 	<dict>
 		<key>order</key>
-		<string>3</string>
-		<key>Icon</key>
-		<string>Aries</string>
-		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=TIME</string>
-		<key>Title</key>
-		<string>每日新闻</string>
-		<key>TimeSpan</key>
-		<string></string>
-	</dict>
-	<key>美文</key>
-	<dict>
-		<key>order</key>
-		<string>4</string>
+		<string>2</string>
 		<key>Icon</key>
 		<string>Taurus</string>
 		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=jinniu</string>
+		<string>http://www.idreems.com/openapi/articles.php?type=article</string>
 		<key>Title</key>
 		<string>每日美文</string>
 		<key>TimeSpan</key>
 		<string></string>
 	</dict>
-	<key>每日笑话</key>
+	<key>每日诗歌</key>
+	<dict>
+		<key>order</key>
+		<string>3</string>
+		<key>Icon</key>
+		<string>Virgo</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/articles.php?type=poem</string>
+		<key>Title</key>
+		<string>每日诗歌</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>每日演讲</key>
+	<dict>
+		<key>order</key>
+		<string>4</string>
+		<key>Icon</key>
+		<string>Libra</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/articles.php?type=speech</string>
+		<key>Title</key>
+		<string>每日演讲</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>每日搞笑</key>
+	<dict>
+		<key>order</key>
+		<string>5</string>
+		<key>Icon</key>
+		<string>Sagittarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/articles.php?type=jokes</string>
+		<key>Title</key>
+		<string>每日搞笑</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>每日娱乐</key>
+	<dict>
+		<key>order</key>
+		<string>6</string>
+		<key>Icon</key>
+		<string>Scorpio</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/articles.php?type=fun</string>
+		<key>Title</key>
+		<string>每日娱乐</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>每日故事</key>
+	<dict>
+		<key>order</key>
+		<string>7</string>
+		<key>Icon</key>
+		<string>Aquarius</string>
+		<key>Url</key>
+		<string>http://www.idreems.com/openapi/articles.php?type=story</string>
+		<key>Title</key>
+		<string>每日故事</string>
+		<key>TimeSpan</key>
+		<string></string>
+	</dict>
+	<key>每日小说</key>
 	<dict>
 		<key>order</key>
 		<string>8</string>
 		<key>Icon</key>
 		<string>Virgo</string>
 		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=chunv</string>
+		<string>http://www.idreems.com/openapi/articles.php?type=novel</string>
 		<key>Title</key>
-		<string>每日笑话</string>
+		<string>每日小说</string>
 		<key>TimeSpan</key>
 		<string></string>
 	</dict>
-	<key>WIKI百科</key>
+	<key>每日科普</key>
 	<dict>
 		<key>order</key>
 		<string>9</string>
 		<key>Icon</key>
-		<string>Libra</string>
+		<string>Taurus</string>
 		<key>Url</key>
-		<string>http://www.idreems.com/openapi/aster.php?type=tiancheng</string>
+		<string>http://www.idreems.com/openapi/articles.php?type=science</string>
 		<key>Title</key>
-		<string>WIKI百科</string>
+		<string>每日科普</string>
 		<key>TimeSpan</key>
 		<string></string>
 	</dict>

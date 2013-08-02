@@ -16,6 +16,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "AudioButton.h"
 #import "PMCalendar.h"
+#import "SettingsViewController.h"
 
 //TODO::url TBC
 #define kDefaultResourceUrl @"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3"
@@ -72,15 +73,41 @@
 {
     [self stopAudio ];
 }
+-(void)leftDrawerButtonPress:(id)sender{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+-(void)settingClick:(UIView*)sender
+{
+    SettingsViewController* controller = [[[SettingsViewController alloc]init]autorelease];
+    [self presentViewController:controller animated:YES completion:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if (self.navigationController) {
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(kBack, kBack) style:UIBarButtonItemStyleBordered target:self action:@selector(goBack:)];
-        self.navigationItem.rightBarButtonItem = backItem;
-        [backItem release];
-    }
+//    if (self.navigationController) {
+//        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(kBack, kBack) style:UIBarButtonItemStyleBordered target:self action:@selector(goBack:)];
+//        self.navigationItem.rightBarButtonItem = backItem;
+//        [backItem release];
+//    }
+    
+    UIButton* drawerBtm = [UIButton buttonWithType:UIButtonTypeCustom];
+    [drawerBtm setFrame:CGRectMake(kMarginToBoundaryX,kMarginToTopBoundary,kDefaultButtonSize,kDefaultButtonSize)];
+    [drawerBtm setBackgroundImage:[UIImage imageNamed:kLeftSideBarButtonBackground] forState:UIControlStateNormal];
+    [drawerBtm addTarget:self action:@selector(leftDrawerButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithCustomView:drawerBtm];
+    [[self navigationItem] setLeftBarButtonItem:leftButton];
+    [leftButton release];
+    
+    UIButton* settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [settingBtn setFrame:CGRectMake(0,0,kDefaultButtonSize,kDefaultButtonSize)];
+    [settingBtn setImage:[UIImage imageNamed:kRightSideBarButtonBackground] forState:UIControlStateNormal];
+    [settingBtn addTarget:self action:@selector(settingClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithCustomView:settingBtn];
+    [[self navigationItem] setRightBarButtonItem:rightButton];
+    [rightButton release];
+    
     if(!date)
     {
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
@@ -95,6 +122,8 @@
     
     NSString* path = [self startNetworkRequest];
     [self updateViews:path];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed: @"head_background.png"] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning
@@ -184,8 +213,11 @@
     
     self.foreignTextView.text = jsonData.foreignText;
     self.chineseTextView.text = jsonData.chineseText;
+    self.foreignTextView.font = kUIFont4Content;
+    self.chineseTextView.font = kUIFont4Content;
+    
     //TODO::声音文件获取存在问题，需要解决
-    self.audioUrl = [jsonData.audioUrl stringByReplacingOccurrencesOfString:@" " withString:@","];//[jsonData.audioUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    self.audioUrl = [jsonData.audioUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 -(NSMutableArray*)loadContent:(NSString*)fileName
 {
